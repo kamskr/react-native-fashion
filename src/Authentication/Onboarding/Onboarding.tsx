@@ -8,7 +8,9 @@ import Animated, {
   interpolate,
 } from "react-native-reanimated";
 
-import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
+import { theme } from "../../components";
+
+import Slide, { SLIDE_HEIGHT } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
 
@@ -20,7 +22,7 @@ const styles = StyleSheet.create({
   },
   slider: {
     height: SLIDE_HEIGHT,
-    borderBottomRightRadius: BORDER_RADIUS,
+    borderBottomRightRadius: theme.borderRadius.xl,
   },
 
   footer: {
@@ -29,12 +31,12 @@ const styles = StyleSheet.create({
   footerContent: {
     flex: 1,
     backgroundColor: "white",
-    borderTopLeftRadius: BORDER_RADIUS,
+    borderTopLeftRadius: theme.borderRadius.xl,
   },
   pagination: {
     ...StyleSheet.absoluteFillObject,
     width,
-    height: BORDER_RADIUS,
+    height: theme.borderRadius.xl,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -46,7 +48,7 @@ const styles = StyleSheet.create({
   },
   picture: {
     alignSelf: "center",
-    borderRadius: BORDER_RADIUS,
+    borderRadius: theme.borderRadius.xl,
     width: width * 0.5,
     height: height * 0.5,
   },
