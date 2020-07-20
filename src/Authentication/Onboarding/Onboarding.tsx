@@ -1,13 +1,18 @@
 import React, { useRef } from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions, Image } from "react-native";
 import { useScrollHandler, interpolateColor } from "react-native-redash";
-import Animated, { multiply, divide } from "react-native-reanimated";
+import Animated, {
+  multiply,
+  divide,
+  Extrapolate,
+  interpolate,
+} from "react-native-reanimated";
 
 import Slide, { SLIDE_HEIGHT, BORDER_RADIUS } from "./Slide";
 import Subslide from "./Subslide";
 import Dot from "./Dot";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -33,6 +38,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
+  },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+
+    justifyContent: "flex-end",
+  },
+  picture: {
+    alignSelf: "center",
+    borderRadius: BORDER_RADIUS,
+    width: width * 0.5,
+    height: height * 0.5,
   },
 });
 
@@ -81,6 +97,39 @@ const Onboarding = () => {
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
+        {slides.map(({ picture }, index) => {
+          const opacity = interpolate(x, {
+            inputRange: [
+              (index - 1) * width,
+              index * width,
+              (index + 1) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+          return (
+            <Animated.View style={[styles.underlay, { opacity }]} key={index}>
+              <Image source={picture} style={styles.picture} />
+            </Animated.View>
+          );
+        })}
+        {slides.map(({ picture }, index) => {
+          const opacity = interpolate(x, {
+            inputRange: [
+              (index - 0.5) * width,
+              index * width,
+              (index + 0.5) * width,
+            ],
+            outputRange: [0, 1, 0],
+            extrapolate: Extrapolate.CLAMP,
+          });
+          return (
+            <Animated.View style={[styles.underlay, { opacity }]} key={index}>
+              <Image source={picture} style={styles.picture} />
+            </Animated.View>
+          );
+        })}
+
         <Animated.ScrollView
           ref={scroll}
           horizontal

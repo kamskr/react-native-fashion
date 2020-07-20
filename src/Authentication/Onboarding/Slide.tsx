@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Dimensions, StyleSheet, Image } from "react-native";
+import { View, Dimensions, StyleSheet } from "react-native";
 
 import { Text } from "../../components";
 
@@ -15,16 +15,6 @@ const styles = StyleSheet.create({
     height: 100,
     justifyContent: "center",
   },
-  underlay: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: "flex-end",
-  },
-  picture: {
-    alignSelf: "center",
-    top: 100,
-    width: width * 0.5,
-    height: height * 0.5,
-  },
 });
 
 interface SlideProps {
@@ -33,7 +23,7 @@ interface SlideProps {
   picture: number;
 }
 
-const Slide = ({ title, right, picture }: SlideProps) => {
+const Slide = ({ title, right }: SlideProps) => {
   const transform = [
     { translateY: (SLIDE_HEIGHT - 100) / 2 },
     { translateX: right ? width / 2 - 50 : -width / 2 + 50 },
@@ -41,9 +31,6 @@ const Slide = ({ title, right, picture }: SlideProps) => {
   ];
   return (
     <View style={styles.constainer}>
-      <View style={styles.underlay}>
-        <Image source={picture} style={styles.picture} />
-      </View>
       <View style={(styles.titleContainer, { transform })}>
         <Text variant="hero">{title}</Text>
       </View>

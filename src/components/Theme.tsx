@@ -1,12 +1,12 @@
 import { createText, BaseTheme } from "@shopify/restyle";
 
-const theme: BaseTheme = {
+const theme = {
   colors: {
     primary: "#2cb9b0",
     title: "#0C0D34",
     text: "rgba(12, 13, 52, 0.7)",
     white: "white",
-    grey: "#E8E8E8",
+    grey: "rgba(12, 13, 52 ,0.05)",
   },
   spacing: {
     s: 8,
@@ -36,6 +36,11 @@ const theme: BaseTheme = {
     body: {
       fontSize: 16,
       lineHeight: 24,
+      fontFamily: "SFProText-Regular",
+      color: "text",
+    },
+    button: {
+      fontSize: 15,
       fontFamily: "SFProText-Regular",
       color: "text",
     },
