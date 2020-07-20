@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, Dimensions, StyleSheet, Image } from "react-native";
-import { scaleTranslation } from "react-native-redash";
 
 const { width, height } = Dimensions.get("window");
 export const SLIDE_HEIGHT = 0.61 * height;
