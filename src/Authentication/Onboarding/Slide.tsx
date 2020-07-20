@@ -1,11 +1,14 @@
 import React from "react";
-import { View, Text, Dimensions, StyleSheet } from "react-native";
+import { View, Text, Dimensions, StyleSheet, Image } from "react-native";
+import { scaleTranslation } from "react-native-redash";
 
 const { width, height } = Dimensions.get("window");
 export const SLIDE_HEIGHT = 0.61 * height;
+export const BORDER_RADIUS = 75;
 const styles = StyleSheet.create({
   constainer: {
     width,
+    overflow: "hidden",
   },
   titleContainer: {
     height: 100,
@@ -18,14 +21,25 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
   },
+  underlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "flex-end",
+  },
+  picture: {
+    alignSelf: "center",
+    top: 100,
+    width: width * 0.5,
+    height: height * 0.5,
+  },
 });
 
 interface SlideProps {
   title: string;
   right?: boolean;
+  picture: number;
 }
 
-const Slide = ({ title, right }: SlideProps) => {
+const Slide = ({ title, right, picture }: SlideProps) => {
   const transform = [
     { translateY: (SLIDE_HEIGHT - 100) / 2 },
     { translateX: right ? width / 2 - 50 : -width / 2 + 50 },
@@ -33,6 +47,9 @@ const Slide = ({ title, right }: SlideProps) => {
   ];
   return (
     <View style={styles.constainer}>
+      <View style={styles.underlay}>
+        <Image source={picture} style={styles.picture} />
+      </View>
       <View style={(styles.titleContainer, { transform })}>
         <Text style={styles.title}>{title}</Text>
       </View>
