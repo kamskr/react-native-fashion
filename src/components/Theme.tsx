@@ -1,7 +1,13 @@
 import { createText, BaseTheme } from "@shopify/restyle";
 
 const theme: BaseTheme = {
-  colors: {},
+  colors: {
+    primary: "#2cb9b0",
+    title: "#0C0D34",
+    text: "rgba(12, 13, 52, 0.7)",
+    white: "white",
+    grey: "#E8E8E8",
+  },
   spacing: {
     s: 8,
     m: 16,
@@ -18,20 +24,20 @@ const theme: BaseTheme = {
     },
     title1: {
       fontSize: 28,
-      fontFamily: "SFProText-SemiBold",
-      color: "#0C0D34",
+      fontFamily: "SFProText-Semibold",
+      color: "title",
     },
     title2: {
       fontSize: 24,
       lineHeight: 30,
-      fontFamily: "SFProText-SemiBold",
-      color: "#0C0D34",
+      fontFamily: "SFProText-Semibold",
+      color: "title",
     },
     body: {
       fontSize: 16,
       lineHeight: 24,
       fontFamily: "SFProText-Regular",
-      color: "rgba(12,13,52,0.7)",
+      color: "text",
     },
   },
   breakpoints: {},
