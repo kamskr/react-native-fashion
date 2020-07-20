@@ -73,6 +73,7 @@ const Onboarding = () => {
     <View style={styles.container}>
       <Animated.View style={[styles.slider, { backgroundColor }]}>
         <Animated.ScrollView
+          ref={scroll}
           horizontal
           snapToInterval={width}
           decelerationRate="fast"
@@ -105,6 +106,7 @@ const Onboarding = () => {
               key={index}
               onPress={() => {
                 if (scroll.current) {
+                  console.log(width * (index + 2));
                   scroll.current
                     .getNode()
                     .scrollTo({ x: width * (index + 1), animated: true });
