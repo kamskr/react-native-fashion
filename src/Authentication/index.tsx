@@ -5,9 +5,7 @@ import { Routes } from "../components/Navigation";
 
 import Onboarding, { assets as onBoardingAssets } from "./Onboarding";
 import Welcome, { assets as welcomeAssets } from "./Welcome";
-
-export { default as Onboarding } from "./Onboarding";
-export { default as Welcome } from "./Welcome";
+import Login from "./Login";
 
 export const assets = [...onBoardingAssets, ...welcomeAssets];
 
@@ -17,6 +15,7 @@ export const AuthenticationNavigator = () => {
     <AuthenticationStack.Navigator headerMode="none">
       <AuthenticationStack.Screen name="Onboarding" component={Onboarding} />
       <AuthenticationStack.Screen name="Welcome" component={Welcome} />
+      <AuthenticationStack.Screen name="Login" component={Login} />
     </AuthenticationStack.Navigator>
   );
 };
