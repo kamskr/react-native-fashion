@@ -5,6 +5,7 @@ import theme, { Box, Text } from "../../components/Theme";
 import { Button } from "../../components";
 
 const picture = require("../../assets/1.png");
+export const assets = [picture];
 
 const { width, height } = Dimensions.get("window");
 

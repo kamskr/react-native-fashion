@@ -90,6 +90,8 @@ const slides = [
   },
 ];
 
+export const assets = slides.map((slide) => slide.picture);
+
 const Onboarding = ({
   navigation,
 }: StackNavigationProps<Routes, "Onboarding">) => {
