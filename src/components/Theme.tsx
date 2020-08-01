@@ -6,8 +6,10 @@ const theme = {
     secondary: "#0C0D34",
     text: "rgba(12, 13, 52, 0.7)",
     white: "white",
-    grey: "rgba(12, 13, 52 ,0.05)",
+    grey: "#F4F0EF",
+    darkGrey: "#8A8D90",
     creamy: "#ECE9DD",
+    danger: "#FF005B",
   },
   spacing: {
     s: 8,
