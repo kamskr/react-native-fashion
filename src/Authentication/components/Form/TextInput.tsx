@@ -5,8 +5,9 @@ import {
   TextInputProps as RNTextInputProps,
 } from "react-native";
 import { Feather as Icon } from "@expo/vector-icons";
+import { useTheme } from "@shopify/restyle";
 
-import theme, { Box } from "../../../components/Theme";
+import { Box } from "../../../components/Theme";
 
 interface TextInputProps extends RNTextInputProps {
   icon: string;
@@ -14,9 +15,9 @@ interface TextInputProps extends RNTextInputProps {
   error?: string;
 }
 
-const SIZE = theme.borderRadius.m * 2;
-
 const TextInput = ({ icon, touched, error, ...props }: TextInputProps) => {
+  const theme = useTheme();
+  const SIZE = theme.borderRadius.m * 2;
   // eslint-disable-next-line no-nested-ternary
   const reColor = !touched ? "text" : error ? "danger" : "primary";
   const color = theme.colors[reColor];

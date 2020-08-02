@@ -1,9 +1,9 @@
 import React, { ReactNode } from "react";
 import Svg, { Path, G, LinearGradient, Stop, Circle } from "react-native-svg";
+import { useTheme } from "@shopify/restyle";
 
-import theme, { Box } from "../../components/Theme";
+import { Box } from "../../components/Theme";
 
-const SIZE = theme.borderRadius.l * 2;
 const Google = () => {
   return (
     <Svg viewBox="0 0 40 40" width={16} height={16}>
@@ -100,6 +100,8 @@ interface SocialIconProps {
 }
 
 const SocialIcon = ({ children }: SocialIconProps) => {
+  const theme = useTheme();
+  const SIZE = theme.borderRadius.l * 2;
   return (
     <Box
       marginHorizontal="m"
