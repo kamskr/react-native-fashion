@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   TextInput as RNTextInput,
   StyleSheet,
@@ -10,42 +10,16 @@ import theme, { Box } from "../../../components/Theme";
 
 interface TextInputProps extends RNTextInputProps {
   icon: string;
-  validator: (input: string) => boolean;
+  touched?: boolean;
+  error?: string;
 }
 
 const SIZE = theme.borderRadius.m * 2;
 
-const Valid = true;
-const Invalid = false;
-const Pristine = null; //default
-type InputState = typeof Valid | typeof Invalid | typeof Pristine;
-
-const TextInput = ({ icon, validator, ...props }: TextInputProps) => {
-  const [input, setInput] = useState("");
-  const [state, setState] = useState<InputState>(null);
-
-  const reColor: keyof typeof theme.colors = (() => {
-    switch (state) {
-      case Pristine:
-        return "darkGrey";
-      case Valid:
-        return "primary";
-      case Invalid:
-        return "danger";
-      default:
-        return "darkGrey";
-    }
-  })();
-
+const TextInput = ({ icon, touched, error, ...props }: TextInputProps) => {
+  // eslint-disable-next-line no-nested-ternary
+  const reColor = !touched ? "text" : error ? "danger" : "primary";
   const color = theme.colors[reColor];
-  const onChangeText = (text: string) => {
-    setInput(text);
-    validate();
-  };
-  const validate = () => {
-    const valid = validator(input);
-    setState(valid);
-  };
 
   return (
     <Box
@@ -64,26 +38,19 @@ const TextInput = ({ icon, validator, ...props }: TextInputProps) => {
         <RNTextInput
           underlineColorAndroid="transparent"
           placeholderTextColor={color}
-          onBlur={validate}
-          {...{ onChangeText }}
           {...props}
         />
       </Box>
-
-      {(state === Valid || state === Invalid) && (
+      {touched && (
         <Box
           height={SIZE}
           width={SIZE}
           justifyContent="center"
           alignItems="center"
-          backgroundColor={state === Valid ? "primary" : "danger"}
+          backgroundColor={!error ? "primary" : "danger"}
           borderRadius={theme.borderRadius.m}
         >
-          <Icon
-            name={state === Valid ? "check" : "x"}
-            color="white"
-            size={16}
-          />
+          <Icon name={!error ? "check" : "x"} color="white" size={16} />
         </Box>
       )}
     </Box>
