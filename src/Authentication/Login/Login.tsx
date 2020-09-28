@@ -7,6 +7,7 @@ import SocialLogin from "../components/SocialLogin";
 import { Box } from "../../components/Theme";
 import TextInput from "../components/Form/TextInput";
 import Checkbox from "../components/Form/Checkbox";
+import Footer from "../components/Footer";
 
 const LoginSchema = Yup.object().shape({
   password: Yup.string()
@@ -17,22 +18,6 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = () => {
-  const footer = (
-    <>
-      <SocialLogin />
-      <Box alignItems="center">
-        <Button variant="transparent" onPress={() => true}>
-          <Text>
-            <Text variant="button" color="white">
-              Don't have an acount?
-            </Text>
-            <Text color="primary"> Sign up here</Text>
-          </Text>
-        </Button>
-      </Box>
-    </>
-  );
-
   const {
     handleChange,
     handleBlur,
@@ -46,6 +31,14 @@ const Login = () => {
     initialValues: { email: "", password: "", remember: false },
     onSubmit: (values) => console.log(values),
   });
+
+  const footer = (
+    <Footer
+      title="Don't have an account?"
+      action="Sign Up here"
+      onPress={() => () => true}
+    />
+  );
 
   return (
     <Container {...{ footer }}>
