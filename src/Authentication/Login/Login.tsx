@@ -58,6 +58,7 @@ const Login = () => {
               onBlur={handleBlur("email")}
               error={errors.email}
               touched={touched.email}
+              autoCompleteType="email"
             />
           </Box>
 
@@ -68,6 +69,8 @@ const Login = () => {
             onBlur={handleBlur("password")}
             error={errors.password}
             touched={touched.password}
+            autoCompleteType="password"
+            secureTextEntry
           />
           <Box flexDirection="row" justifyContent="space-between">
             <Checkbox
